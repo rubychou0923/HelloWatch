@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 let gold_words :[String] =
 [
@@ -57,7 +58,9 @@ var random_int = Int.random(in:0...gold_words.count-1);
 struct ContentView: View {
 
     @State var buttonPressed = false
-    
+    @State var schduled = false
+
+
     var body: some View {
         VStack {
             
@@ -67,7 +70,37 @@ struct ContentView: View {
             }
             
             Button(action: {
+
+                if(schduled==false){
+                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+                        if success{
+                            print("All set")
+                        } else if let error = error {
+                            print(error.localizedDescription)
+                        }
+                    }
+
+                    let content = UNMutableNotificationContent()
+                    content.title = "Ruby加油,堅持做對的事！"
+                    content.subtitle = gold_words[Int.random(in:0...gold_words.count-1)]
+                    content.sound = .default
+                    content.categoryIdentifier = "myCategory"
+                    let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
+                    UNUserNotificationCenter.current().setNotificationCategories([category])
+                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+                    let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
+                    UNUserNotificationCenter.current().add(request)
+                    { (error) in
+                        if let error = error{
+                            print(error.localizedDescription)
+                        }else{
+                            print("scheduled successfully")
+                        }
+                    }
+                    //schduled = true;
+                }
                 buttonPressed.toggle()
+
             }) {
                 Text(gold_words[Int.random(in:0...gold_words.count-1)])
                     .font(.system(size: 16, weight: .light, design: .serif))

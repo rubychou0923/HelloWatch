@@ -6,24 +6,13 @@
 	<array>
 		<string>com.example.apple-samplecode.ColorFeed.refresh</string>
 	</array>
-	<key>NSExtension</key>
-	<dict>
-		<key>NSExtensionAttributes</key>
-		<dict>
-			<key>WKAppBundleIdentifier</key>
-			<string>Freedom.Hello-Watch.watchkitapp</string>
-		</dict>
-		<key>NSExtensionPointIdentifier</key>
-		<string>com.apple.watchkit</string>
-	</dict>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>WKBackgroundModes</key>
 	<array>
-		<string>alarm</string>
+		<string>mindfulness</string>
 		<string>workout-processing</string>
 	</array>
 </dict>
