@@ -55,6 +55,38 @@ let gold_words :[String] =
 
 var random_int = Int.random(in:0...gold_words.count-1);
 
+func reschdule()
+{
+    UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
+        if success{
+            print("All set")
+        } else if let error = error {
+            print(error.localizedDescription)
+        }
+    }
+
+    let content = UNMutableNotificationContent()
+    content.title = "Ruby加油,堅持做對的事！"
+    content.subtitle = gold_words[Int.random(in:0...gold_words.count-1)]
+    content.sound = .default
+    content.categoryIdentifier = "myCategory"
+    let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
+    UNUserNotificationCenter.current().setNotificationCategories([category])
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+    //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
+
+    let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
+    UNUserNotificationCenter.current().add(request)
+    { (error) in
+        if let error = error{
+            print(error.localizedDescription)
+        }else{
+            print("scheduled successfully")
+        }
+    }
+
+}
+
 struct ContentView: View {
 
     @State var buttonPressed = false
@@ -62,50 +94,28 @@ struct ContentView: View {
 
 
     var body: some View {
-        VStack {
-            
-            /// support for if-else introduced in Xcode 12
-            if buttonPressed {
-                
-            }
-            
-            Button(action: {
+        ScrollView(.vertical){
+            VStack {
 
-                if(schduled==false){
-                    UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge]) { (success, error) in
-                        if success{
-                            print("All set")
-                        } else if let error = error {
-                            print(error.localizedDescription)
-                        }
-                    }
+                /// support for if-else introduced in Xcode 12
+                if buttonPressed {
 
-                    let content = UNMutableNotificationContent()
-                    content.title = "Ruby加油,堅持做對的事！"
-                    content.subtitle = gold_words[Int.random(in:0...gold_words.count-1)]
-                    content.sound = .default
-                    content.categoryIdentifier = "myCategory"
-                    let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
-                    UNUserNotificationCenter.current().setNotificationCategories([category])
-                    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
-                    let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
-                    UNUserNotificationCenter.current().add(request)
-                    { (error) in
-                        if let error = error{
-                            print(error.localizedDescription)
-                        }else{
-                            print("scheduled successfully")
-                        }
-                    }
-                    //schduled = true;
                 }
-                buttonPressed.toggle()
 
-            }) {
-                Text(gold_words[Int.random(in:0...gold_words.count-1)])
-                    .font(.system(size: 16, weight: .light, design: .serif))
-            }.buttonStyle(.plain)
-            .frame(maxWidth: .infinity)
+                Button(action: {
+                    reschdule()
+                    buttonPressed.toggle()
+
+                }) {
+                    Text(gold_words[Int.random(in:0...gold_words.count-1)])
+                    //.font(.system(size: 18, weight: .light, design: .serif))
+                    //.font(.custom("PingFangTC-Medium",fixedSize: 16))
+                    .font(.custom("PingFangTC-Semibold",fixedSize: 18))
+                    .foregroundStyle(.gray)
+
+                }.buttonStyle(.plain)
+                   // .frame(maxWidth: .infinity)
+            }
         }
     }
 
