@@ -50,6 +50,24 @@ let gold_words :[String] =
     "詩篇 16:4 以別神代替耶和華的， 他們的愁苦必加增； 他們所澆奠的血我不獻上； 我嘴唇也不提別神的名號。",
     "約翰福音 14:6-7 耶穌說：「我就是道路、真理、生命，若不藉著我，沒有人能到父那裡。 你們若認識我，也會認識我的父。從現在起，你們不但認識祂，而且也看見祂了。」",
     "路加福音 8:15  但那落在好土裡的，就是人用誠實良善的心來聽，把道持守住，忍耐著結出果實。",
+    "親愛的上帝，請賜我寧靜，去接受我無法改變的事；請賜我勇氣，去改變我能改變的事；請賜我智慧，以分辨二者的不同。",
+    "哥羅西書 1:2 在基督裡有忠心的弟兄。願恩惠、平安從神我們的父歸與你們！",
+    "哥羅西書 2:6~7 你們既然接受了主基督耶穌，就當遵他而行，在他裡面生根建造，信心堅固，正如你們所領的教訓，感謝的心也更增長了。",
+    "哥羅西書 2:12~13 所以，你們既是神的選民，聖潔蒙愛的人，就要存（原文作穿；下同）憐憫、恩慈、謙虛、溫柔、忍耐的心。倘若這人與那人有嫌隙，總要彼此包容，彼此饒恕；主怎樣饒恕了你們，你們也要怎樣饒恕人。",
+    "哥羅西書 2:22~23你們作僕人的，要凡事聽從你們肉身的主人，不要只在眼前事奉，像是討人喜歡的，總要存心誠實敬畏主。無論做什麼，都要從心裡做，像是給主做的，不是給人做的",
+    "出埃及記 20:8-11 當記念安息日，守為聖日。六日要勞碌做你一切的工，但第七日是向耶和華─你神當守的安息日。這一日你和你的兒女、僕婢、牲畜，並你城裡寄居的客旅，無論何工都不可做；因為六日之內，耶和華造天、地、海，和其中的萬物，第七日便安息，所以耶和華賜福與安息日，定為聖日。",
+    "詩篇 1:2-3 惟喜愛耶和華的律法， 晝夜思想， 這人便為有福！ 他要像一棵樹栽在溪水旁， 按時候結果子， 葉子也不枯乾。 凡他所做的盡都順利。",
+    "詩篇 119:11 我將你的話藏在心裏， 免得我得罪你。",
+    "詩篇 119:15 我要默想你的訓詞， 看重你的道路。",
+    "希伯來書 4:11 所以，我們務必竭力進入那安息，免得有人學那不信從的樣子跌倒了。",
+    "箴言 3:24-26 你躺下，必不懼怕； 你躺臥，睡得香甜。 忽然來的驚恐，不要害怕； 惡人遭毀滅，也不要恐懼。 因為耶和華是你所倚靠的； 他必保守你的腳不陷入網羅。",
+    "詩篇 131:1-2 耶和華啊，我的心不狂傲， 我的眼不高大； 重大和測不透的事， 我也不敢行。 我的心平穩安靜， 好像斷過奶的孩子在他母親的懷中； 我的心在我裏面真像斷過奶的孩子。",
+    "約翰福音 15:5 我是葡萄樹，你們是枝子。常在我裏面的，我也常在他裏面，這人就多結果子；因為離了我，你們就不能做甚麼。",
+    "約翰福音 15:7 你們若常在我裏面，我的話也常在你們裏面，凡你們所願意的，祈求，就給你們成就。",
+    "耶利米書 31:25 疲乏的人，我使他飽飫；愁煩的人，我使他知足。",
+    "耶利米書 31:28 我先前怎樣留意將他們拔出、拆毀、毀壞、傾覆、苦害，也必照樣留意將他們建立、栽植。這是耶和華說的。",
+    "耶利米書 17:7 倚靠耶和華，以耶和華為可靠的，那人有福了！",
+
 ]
 
 
@@ -72,7 +90,7 @@ func reschdule()
     content.categoryIdentifier = "myCategory"
     let category = UNNotificationCategory(identifier: "myCategory", actions: [], intentIdentifiers: [], options: [])
     UNUserNotificationCenter.current().setNotificationCategories([category])
-    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: true)
+    let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5400, repeats: true)
     //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
 
     let request = UNNotificationRequest(identifier: "milk", content: content, trigger: trigger)
@@ -110,10 +128,14 @@ struct ContentView: View {
                     Text(gold_words[Int.random(in:0...gold_words.count-1)])
                     //.font(.system(size: 18, weight: .light, design: .serif))
                     //.font(.custom("PingFangTC-Medium",fixedSize: 16))
-                    .font(.custom("PingFangTC-Semibold",fixedSize: 18))
-                    .foregroundStyle(.gray)
+                    .font(.custom("PingFangTC-Semibold",fixedSize: 16))
+                    .foregroundStyle(.white)
 
                 }.buttonStyle(.plain)
+                    //.buttonStyle(.borderedProminent)
+                    .buttonBorderShape(.roundedRectangle(radius: 5))
+                    //.padding()
+                    //.buttonStyle(.bordered)
                    // .frame(maxWidth: .infinity)
             }
         }
