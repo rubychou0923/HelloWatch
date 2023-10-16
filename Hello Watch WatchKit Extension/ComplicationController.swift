@@ -54,7 +54,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let template = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "謹守!"), line2TextProvider: CLKSimpleTextProvider(text: "信靠主"))
             handler(CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template))
         case .graphicBezel:
-            let templateInner = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "謙卑!"), line2TextProvider: CLKSimpleTextProvider(text: "信靠主"))
+            //let templateInner = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "謙卑!"), line2TextProvider: CLKSimpleTextProvider(text: "信靠主"))
+            let templateInner = CLKComplicationTemplateGraphicCircularStackText(line1TextProvider: CLKSimpleTextProvider(text: "不要怕"), line2TextProvider: CLKSimpleTextProvider(text: "只要信"))
             let template = CLKComplicationTemplateGraphicBezelCircularText(circularTemplate:templateInner, textProvider: CLKSimpleTextProvider(text:"耶和華是我的牧者"))
             handler(CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template))
         default:
